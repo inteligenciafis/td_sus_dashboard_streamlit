@@ -106,68 +106,64 @@ def formatar_sexo(sexo):
     
     
 def formatar_leito(leito):
-    for l in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 14, 87]:
-        match leito:
-            case 1:
-                return("Cirúrgico")
-            case 2:
-                return("Obstétricos")
-            case 3:
-                return("Clínico")
-            case 4:
-                return("Crônicos")
-            case 5:
-                return("Psiquiatria")
-            case 6:
-                return("Pneumologia")
-            case 7:
-                return("Pediátricos")
-            case 8:
-                return("Reabilitação")
-            case 9:
-                return("Dia/Cirúrgicos")
-            case 10:
-                return("Dia/AIDS")
-            case 14:
-                return("Dia/Saúde Mental")
-            case 87:
-                return("Saúde Mental (Clínico)")
+    if leito == 1:
+        return("Cirúrgico")
+    elif leito == 2:
+        return("Obstétricos")
+    elif leito == 3:
+        return("Clínico")
+    elif leito == 4:
+        return("Crônicos")
+    elif leito == 5:
+        return("Psiquiatria")
+    elif leito == 6:
+        return("Pneumologia")
+    elif leito == 7:
+        return("Pediátricos")
+    elif leito == 8:
+        return("Reabilitação")
+    elif leito == 9:
+        return("Dia/Cirúrgicos")
+    elif leito == 10:
+        return("Dia/AIDS")
+    elif leito == 14:
+        return("Dia/Saúde Mental")
+    elif leito == 87:
+        return("Saúde Mental (Clínico)")
             
 def formatar_uti(uti):
-    for l in df.MARCA_UTI:
-        match uti:
-            case 0:
-                return("Não utilizou UTI")
-            case 1:
-                return("Mais de um tipo de UTI")
-            case 99:
-                return("UTI Doador")
-            case 74:
-                return("UTI Adulto - Tipo I")
-            case 75:
-                return("UTI Adulto - Tipo II")
-            case 76:
-                return("UTI Adulto - Tipo III")
-            case 77:
-                return("UTI Infantil - Tipo I")
-            case 78:
-                return("UTI Infantil - Tipo II")
-            case 79:
-                return("UTI Infantil - Tipo III")
-            case 80:
-                return("UTI Neonatal - Tipo I")
-            case 81:
-                return("UTI Neonatal - Tipo II")
-            case 82:
-                return("UTI Neonatal - Tipo III")
-            case 51:
-                return("UTI adulto - tipo II COVID 19")
-            case 83:
-                return("UTI de queimados")
-            case 85:
-                return("UTI coronariana tipo II - UCO tipo II")
-            case 52:
-                return("UTI pediátrica - tipo II COVID 19")
+    if uti == 0:
+        return("Não utilizou UTI")
+    elif uti == 1:
+        return("Mais de um tipo de UTI")
+    elif uti == 99:
+        return("UTI Doador")
+    elif uti == 74:
+        return("UTI Adulto - Tipo I")
+    elif uti == 75:
+        return("UTI Adulto - Tipo II")
+    elif uti == 76:
+        return("UTI Adulto - Tipo III")
+    elif uti == 77:
+        return("UTI Infantil - Tipo I")
+    elif uti == 78:
+        return("UTI Infantil - Tipo II")
+    elif uti == 79:
+        return("UTI Infantil - Tipo III")
+    elif uti == 80:
+        return("UTI Neonatal - Tipo I")
+    elif uti == 81:
+        return("UTI Neonatal - Tipo II")
+    elif uti == 82:
+        return("UTI Neonatal - Tipo III")
+    elif uti == 51:
+        return("UTI adulto - tipo II COVID 19")
+    elif uti == 83:
+        return("UTI de queimados")
+    elif uti == 85:
+        return("UTI coronariana tipo II - UCO tipo II")
+    elif uti == 52:
+        return("UTI pediátrica - tipo II COVID 19")
     
 def ler_modelos():
     # with open("ESPEC_<_idade_PROC_SOLIC", 'rb') as file:
