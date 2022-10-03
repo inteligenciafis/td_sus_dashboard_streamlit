@@ -1,3 +1,4 @@
+from ast import Try
 from email import utils
 import streamlit as st
 import pandas as pd
@@ -10,13 +11,59 @@ from scipy.stats import gaussian_kde
 # from sklearn.neighbors import KernelDensity
 import pickle
 import utils
-
+from utils import z
 
 df = pd.read_csv("dfs.csv")
-
-
+vars = ['idade', 'sexo', 'leito', 'procedimento', 'uti']
 # utils.calc_density()
 # df = pd.read_csv("df_alt.csv")
+
+def p_radar(df, idade, sexo, leito, procedimento, uti, h_val_sh, h_val_sp, h_val_uti):
+    # print(fit_val_sh.predict(paciente(idade, sexo, leito)))
+    
+    
+    r = [z(df, "idade", idade), 
+         z(df, "VAL_SH", h_val_sh[0]), 
+         z(df, "VAL_SP", h_val_sp[0]), 
+         z(df, "VAL_UTI", h_val_uti[0]),]
+    
+    theta = ["Idade", "R$ SH", "R$ SP", "R$ UTI"]
+    
+    fig = px.line_polar(r=r, theta=theta, line_close=True)
+    #r2 = [z(df, 'idade', idade), z(df, 'SEXO', sexo), z(df, 'ESPEC', leito)]
+    #theta2 = ["Idade", "Sexo", "Leito"]
+    
+    #fig.add_trace(go.Scatterpolar(r=r2, theta=theta2, fill='toself'))
+    fig.update_layout(
+        
+        template="plotly_dark",
+        polar=dict(
+            radialaxis=dict(
+                visible=True,
+                range=[-5, 5]
+            )
+        )
+    )
+    st.plotly_chart(fig, use_container_width=True)
+
+# def p_radar(idade, sexo, leito, df):
+    
+#     fig = go.Figure(data=go.Scatterpolar(
+#         
+#         fill='toself',
+#     ))
+    
+#     fig.update_layout(
+#         polar=dict(
+#             radialaxis=dict(
+#                 visible=True,
+#             ),
+#         ),
+#         showlegend=False
+#     )
+#     fig.update_polars()
+#     st.plotly_chart(fig, use_container_width=True)
+
 def p_idade(idade):
     kernel = gaussian_kde(df.idade)
     #kernel.set_bandwidth(kernel.factor / idade)
@@ -57,6 +104,71 @@ def formatar_sexo(sexo):
     else:
         return("Outro")
     
+    
+def formatar_leito(leito):
+    for l in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 14, 87]:
+        match leito:
+            case 1:
+                return("Cirúrgico")
+            case 2:
+                return("Obstétricos")
+            case 3:
+                return("Clínico")
+            case 4:
+                return("Crônicos")
+            case 5:
+                return("Psiquiatria")
+            case 6:
+                return("Pneumologia")
+            case 7:
+                return("Pediátricos")
+            case 8:
+                return("Reabilitação")
+            case 9:
+                return("Dia/Cirúrgicos")
+            case 10:
+                return("Dia/AIDS")
+            case 14:
+                return("Dia/Saúde Mental")
+            case 87:
+                return("Saúde Mental (Clínico)")
+            
+def formatar_uti(uti):
+    for l in df.MARCA_UTI:
+        match uti:
+            case 0:
+                return("Não utilizou UTI")
+            case 1:
+                return("Mais de um tipo de UTI")
+            case 99:
+                return("UTI Doador")
+            case 74:
+                return("UTI Adulto - Tipo I")
+            case 75:
+                return("UTI Adulto - Tipo II")
+            case 76:
+                return("UTI Adulto - Tipo III")
+            case 77:
+                return("UTI Infantil - Tipo I")
+            case 78:
+                return("UTI Infantil - Tipo II")
+            case 79:
+                return("UTI Infantil - Tipo III")
+            case 80:
+                return("UTI Neonatal - Tipo I")
+            case 81:
+                return("UTI Neonatal - Tipo II")
+            case 82:
+                return("UTI Neonatal - Tipo III")
+            case 51:
+                return("UTI adulto - tipo II COVID 19")
+            case 83:
+                return("UTI de queimados")
+            case 85:
+                return("UTI coronariana tipo II - UCO tipo II")
+            case 52:
+                return("UTI pediátrica - tipo II COVID 19")
+    
 def ler_modelos():
     # with open("ESPEC_<_idade_PROC_SOLIC", 'rb') as file:
     #     lo = pickle.load(file)
@@ -72,26 +184,30 @@ def ler_modelos():
         
     return fit_val_sh, fit_val_sp, fit_val_uti
 
-def paciente(idade, sexo):
+def paciente(idade, sexo, leito, procedimento, uti):
     paciente = pd.Series({
         'idade': idade,
-        'SEXO': sexo
+        'SEXO': sexo,
+        'ESPEC': leito,
+        'PROC_SOLIC': procedimento,
+        'MARCA_UTI':uti,
     })
+    
     print("Paciente:", paciente)
     return pd.DataFrame(paciente).transpose()
     
-def prev_val_sh(idade, sexo):
-    val = fit_val_sh.predict(paciente(idade, sexo))
+def prev_val_sh(idade, sexo, leito, procedimento, uti):
+    val = fit_val_sh.predict(paciente(idade, sexo, leito, procedimento, uti))
     #print(val)
     return val
 
-def prev_val_sp(idade, sexo):
-    val = fit_val_sp.predict(paciente(idade, sexo))
+def prev_val_sp(idade, sexo, leito, procedimento, uti):
+    val = fit_val_sp.predict(paciente(idade, sexo, leito, procedimento, uti))
     #print(val)
     return val
 
-def prev_val_uti(idade, sexo):
-    val = fit_val_uti.predict(paciente(idade, sexo))
+def prev_val_uti(idade, sexo, leito, procedimento, uti):
+    val = fit_val_uti.predict(paciente(idade, sexo, leito, procedimento, uti))
     #print(val)
     return val
 
@@ -107,30 +223,47 @@ with st.sidebar:
     st.write(""" 
          Dados do paciente
          """)
+    
     idade = st.slider("Idade", min_value = min(df.idade), max_value= max(df.idade), step = 1.0)
+    
     sexo = st.radio(label="Sexo", options=set(df.SEXO), format_func=formatar_sexo)
+    
+    leito = st.radio(label="Tipo de leito", options=set(df.ESPEC), format_func=formatar_leito)
+    
+    procedimento = st.number_input(label="Procedimento solicitado ou realizado", min_value=0, max_value=99999999, value=99999999,
+                                   help="Código do procedimento (número apenas)")
+    
+    uti = st.radio(label="UTI utilizada", options=set(df.MARCA_UTI), format_func=formatar_uti)
+    
+    st.write("\n \n \n")
 
     
-h_val_sh = np.round(prev_val_sh(idade, sexo), 2)
-h_val_sp = np.round(prev_val_sp(idade, sexo), 2)
-h_val_uti = np.round(prev_val_uti(idade, sexo), 2)
-h_tot = h_val_sh + h_val_sp + h_val_uti
+h_val_sh = np.round(prev_val_sh(idade, sexo, leito, procedimento, uti), 2)
+h_val_sp = np.round(prev_val_sp(idade, sexo, leito, procedimento, uti), 2)
+h_val_uti = np.round(prev_val_uti(idade, sexo, leito, procedimento, uti), 2)
+h_tot = np.round(h_val_sh + h_val_sp + h_val_uti, 2)
     
 m1, m2, m3, m4 = st.columns(4)
 
-st.write("Média de gastos com pacientes como este")
-    
-with st.container():
-    with m1:
-        st.metric("Valor de Total", value = h_tot)
-    with m3:
-        st.metric("Valor de serviços hospitalares", value = h_val_sh)
-    with m2:
-        st.metric("Valor de serviços profissionais", value = h_val_sp)
-    with m4:    
-        st.metric("Valor de UTI", value = h_val_uti)
-    
-with st.container():
-    p_idade(idade)
-    p_marca_uti()
 
+    
+with st.container():
+    
+    st.write("Média de gastos com pacientes como este")
+    
+    with m1:
+        st.metric("Valor total esperado", value = f"R$ {h_tot[0]}")
+    with m3:
+        st.metric("Valor esperado de serviços hospitalares", value = f"R$ {h_val_sh[0]}")
+    with m2:
+        st.metric("Valor esperado de serviços profissionais", value = f"R$ {h_val_sp[0]}")
+    with m4:    
+        st.metric("Valor esperado de UTI", value = f"R$ {h_val_uti[0]}")
+    
+with st.container():
+    mm1, mm2 = st.columns(2)
+    with mm1:
+        p_radar(df, idade, sexo, leito, procedimento, uti, h_val_sh, h_val_sp, h_val_uti)
+    with mm2: 
+        p_idade(idade)
+        p_marca_uti()

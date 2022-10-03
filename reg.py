@@ -27,7 +27,7 @@ ln = LinearRegression()
 
 """ VALORES """
 
-X = dfa[["idade", "SEXO"]]
+X = dfa[["idade", "SEXO", "ESPEC", "PROC_SOLIC", "MARCA_UTI"]]
 y = dfa['VAL_SH']
                     
 fit_val_sh = ln.fit(X, y)
@@ -58,3 +58,7 @@ fit_val_sh.score(X, y)
 
 with open("VAL_UTI_<_idade_SEXO.pickle", 'wb') as file2:
     pickle.dump(ln, file2)
+
+
+
+

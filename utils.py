@@ -14,3 +14,18 @@ def calc_density():
     df.to_csv("df_alt.csv")
 
 calc_density()
+    
+
+""" 
+Normalização
+
+"""
+
+# EGA1
+import statistics
+import numpy as np
+
+def z(df, var, valor):
+    mean = np.mean(df[var])
+    sd = np.std(df[var])
+    return(statistics.NormalDist(mean, sd).zscore(valor))
