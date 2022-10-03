@@ -11,7 +11,7 @@ from scipy.stats import gaussian_kde
 # from sklearn.neighbors import KernelDensity
 import pickle
 import utils
-from utils import z
+# from utils import z
 
 df = pd.read_csv("dfs.csv")
 vars = ['idade', 'sexo', 'leito', 'procedimento', 'uti']
