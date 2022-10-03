@@ -10,8 +10,14 @@ import numpy as np
 from scipy.stats import gaussian_kde
 # from sklearn.neighbors import KernelDensity
 import pickle
-import utils
-# from utils import z
+
+import statistics
+import numpy as np
+
+def z(df, var, valor):
+    mean = np.mean(df[var])
+    sd = np.std(df[var])
+    return(statistics.NormalDist(mean, sd).zscore(valor))
 
 df = pd.read_csv("dfs.csv")
 vars = ['idade', 'sexo', 'leito', 'procedimento', 'uti']
