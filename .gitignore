@@ -1,7 +1,9 @@
 .streamlit
-__pyache__
+__pycache__
 tree.dot
 tree.pdf
 tree2.dot
 tree2.pdf
 egafit.dot
+tree.png
+conda.txt
