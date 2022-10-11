@@ -6,26 +6,26 @@
 #backcall @ file:///home/ktietz/src/ci/backcall_1611930011877/work
 #beautifulsoup4 @ file:///opt/conda/conda-bld/beautifulsoup4_1650462163268/work
 #bleach @ file:///opt/conda/conda-bld/bleach_1641577558959/work
-blinker==1.4
+# blinker==1.4
 #Bottleneck @ file:///opt/conda/conda-bld/bottleneck_1657175564434/work
 br-nome-gen==1.3.0
-brotlipy==0.7.0
+# brotlipy==0.7.0
 #cachetools @ file:///tmp/build/80754af9/cachetools_1619597386817/work
 #certifi @ file:///croot/certifi_1665076670883/work/certifi
 #cffi @ file:///tmp/abs_98z5h56wf8/croots/recipe/cffi_1659598650955/work
 #charset-normalizer @ file:///tmp/build/80754af9/charset-normalizer_1630003229654/work
 #click @ file:///tmp/build/80754af9/click_1646056706450/work
 #commonmark @ file:///Users/ktietz/demo/mc3/conda-bld/commonmark_1630649545323/work
-contourpy==1.0.5
+# contourpy==1.0.5
 #cryptography @ file:///tmp/build/80754af9/cryptography_1652101588599/work
-cycler==0.11.0
+# cycler==0.11.0
 #debugpy @ file:///home/builder/ci_310/debugpy_1640789504635/work
 #decorator @ file:///opt/conda/conda-bld/decorator_1643638310831/work
 #defusedxml @ file:///tmp/build/80754af9/defusedxml_1615228127516/work
 #entrypoints @ file:///tmp/build/80754af9/entrypoints_1649908313000/work
 #executing @ file:///opt/conda/conda-bld/executing_1646925071911/work
 #fastjsonschema @ file:///opt/conda/conda-bld/python-fastjsonschema_1661371079312/work
-fonttools==4.37.4
+# fonttools==4.37.4
 #future @ file:///home/builder/ci_310/future_1640790123501/work
 #gitdb @ file:///tmp/build/80754af9/gitdb_1617117951232/work
 #GitPython @ file:///tmp/build/80754af9/gitpython_1624609474443/work
@@ -44,14 +44,14 @@ graphviz==0.20.1
 #jupyter_core @ file:///opt/conda/conda-bld/jupyter_core_1664917302524/work
 #jupyterlab-pygments @ file:///tmp/build/80754af9/jupyterlab_pygments_1601490720602/work
 #jupyterlab-widgets @ file:///tmp/build/80754af9/jupyterlab_widgets_1609884341231/work
-kiwisolver==1.4.4
+# kiwisolver==1.4.4
 #MarkupSafe @ file:///opt/conda/conda-bld/markupsafe_1654597864307/work
 matplotlib==3.6.1
 #matplotlib-inline @ file:///opt/conda/conda-bld/matplotlib-inline_1662014470464/work
 #mistune @ file:///home/builder/ci_310/mistune_1640791641754/work
-mkl-fft==1.3.1
+# mkl-fft==1.3.1
 #mkl-random @ file:///home/builder/ci_310/mkl_random_1641843545607/work
-mkl-service==2.4.0
+# mkl-service==2.4.0
 #nbclient @ file:///tmp/build/80754af9/nbclient_1650290238894/work
 #nbconvert @ file:///opt/conda/conda-bld/nbconvert_1649751911790/work
 #nbformat @ file:///opt/conda/conda-bld/nbformat_1663744952973/work
@@ -65,11 +65,11 @@ pandas==1.4.4
 #parso @ file:///opt/conda/conda-bld/parso_1641458642106/work
 #pexpect @ file:///tmp/build/80754af9/pexpect_1605563209008/work
 #pickleshare @ file:///tmp/build/80754af9/pickleshare_1606932040724/work
-Pillow==9.2.0
+# Pillow==9.2.0
 #plotly @ file:///tmp/abs_7afcdfad-dbbb-49d2-adea-186abf525c45jbnd8p95/croots/recipe/plotly_1658160053621/work
 #prometheus-client @ file:///tmp/abs_d3zeliano1/croots/recipe/prometheus_client_1659455100375/work
 #prompt-toolkit @ file:///tmp/build/80754af9/prompt-toolkit_1633440160888/work
-protobuf==3.20.1
+# protobuf==3.20.1
 #psutil @ file:///opt/conda/conda-bld/psutil_1656431268089/work
 #ptyprocess @ file:///tmp/build/80754af9/ptyprocess_1609355006118/work/dist/ptyprocess-0.7.0-py2.py3-none-any.whl
 #pure-eval @ file:///opt/conda/conda-bld/pure_eval_1646925070566/work
@@ -85,7 +85,7 @@ pydot==1.4.2
 # PySocks @ file:///home/builder/ci_310/pysocks_1640793678128/work
 # python-dateutil @ file:///tmp/build/80754af9/python-dateutil_1626374649649/work
 # pytz @ file:///opt/conda/conda-bld/pytz_1654762638606/work
-PyYAML==6.0
+# PyYAML==6.0
 # pyzmq @ file:///opt/conda/conda-bld/pyzmq_1657724186960/work
 # requests @ file:///opt/conda/conda-bld/requests_1657734628632/work
 # rich @ file:///tmp/abs_f016wesp06/croots/recipe/rich_1659708287203/work
@@ -112,6 +112,6 @@ scipy==1.9.1
 # validators @ file:///tmp/build/80754af9/validators_1612286467315/work
 # watchdog @ file:///home/builder/ci_310/watchdog_1640811339391/work
 # wcwidth @ file:///Users/ktietz/demo/mc3/conda-bld/wcwidth_1629357192024/work
-webencodings==0.5.1
+# webencodings==0.5.1
 # widgetsnbextension @ file:///tmp/build/80754af9/widgetsnbextension_1645009354667/work
 # zipp @ file:///opt/conda/conda-bld/zipp_1652341764480/work
