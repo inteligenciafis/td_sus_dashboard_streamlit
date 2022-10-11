@@ -66,7 +66,7 @@ pandas==1.4.4
 #pexpect @ file:///tmp/build/80754af9/pexpect_1605563209008/work
 #pickleshare @ file:///tmp/build/80754af9/pickleshare_1606932040724/work
 # Pillow==9.2.0
-#plotly @ file:///tmp/abs_7afcdfad-dbbb-49d2-adea-186abf525c45jbnd8p95/croots/recipe/plotly_1658160053621/work
+plotly
 #prometheus-client @ file:///tmp/abs_d3zeliano1/croots/recipe/prometheus_client_1659455100375/work
 #prompt-toolkit @ file:///tmp/build/80754af9/prompt-toolkit_1633440160888/work
 # protobuf==3.20.1
