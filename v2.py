@@ -47,7 +47,10 @@ def p_idade(idade, idade_paciente):
         y=kernel(idade_paciente)[0], 
         text=paciente.nome[0], 
         showarrow=True, 
-        arrowhead=1)
+        arrowhead=1,
+        arrowsize=2,
+        arrowwidth=2,
+        arrowcolor="blue")
     fig.update_layout(template="plotly_dark")
     fig.update_annotations()
     st.plotly_chart(fig, use_container_width=True)
