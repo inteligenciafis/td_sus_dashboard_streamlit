@@ -13,6 +13,7 @@ import pickle
 
 import statistics
 import numpy as np
+import time
 
 def z(df, var, valor):
     mean = np.mean(df[var])
@@ -236,6 +237,8 @@ with st.sidebar:
                                    help="Código do procedimento (número apenas)")
     
     uti = st.radio(label="UTI utilizada", options=set(df.MARCA_UTI), format_func=formatar_uti)
+    datain = st.date_input("Data da admissão")
+    # cid = st.selectbox(label="CID10 Primário", options=set(df.CID_NOTIF))
     
     st.write("\n \n \n")
 
@@ -245,10 +248,32 @@ h_val_sp = np.round(prev_val_sp(idade, sexo, leito, procedimento, uti), 2)
 h_val_uti = np.round(prev_val_uti(idade, sexo, leito, procedimento, uti), 2)
 h_tot = np.round(h_val_sh + h_val_sp + h_val_uti, 2)
     
+with st.container():
+    "Seu paciente:"
+    c1, c2, c3 = st.columns(3)
+    with c1:
+        if sexo == 1:
+            st.metric("Sexo", "🧍‍♂️(H)")
+        if sexo == 3:
+            st.metric("Sexo", "🧍‍♀️(M)")
+    with c2:
+        st.metric("Idade:", idade)
+    with c3:
+        st.metric(label="Procedimento solicitado:", value=int(procedimento))
+
+with st.container():
+    "Seu paciente:"
+    a1, a2, a3 = st.columns(3)
+    with a1:
+        pass #st.metric("Dias de internação", diarias)
+    with a2:
+        st.metric("Idade:", idade)
+    with a3:
+        st.metric(label="Procedimento solicitado:", value=int(procedimento))
+
+
 m1, m2, m3, m4 = st.columns(4)
 
-
-    
 with st.container():
     
     st.write("Média de gastos com pacientes como este")

@@ -1,10 +1,14 @@
 from sklearn.linear_model import LinearRegression, LogisticRegression
+from sklearn.tree import DecisionTreeRegressor, DecisionTreeClassifier
+from sklearn.model_selection import train_test_split
 import pandas as pd
 import pickle
 
 df = pd.read_csv("dfs.csv")
 dfa =pd.read_csv("df.csv")
 ln = LinearRegression()
+tc = DecisionTreeClassifier()
+
 # lo = LogisticRegression()
 
 # X = df[["idade", "PROC_SOLIC"]]
@@ -24,6 +28,40 @@ ln = LinearRegression()
 # ndf = pd.DataFrame(paciente).transpose()
 # lo.predict(ndf)
 
+""" Árvore de Decisão """
+
+tr = DecisionTreeRegressor(criterion="squared_error", max_depth=20)
+X = df[["idade", "SEXO", "ESPEC", "PROC_SOLIC", "MARCA_UTI"]]
+X['SEXO'] = X["SEXO"].astype('category')
+X['ESPEC'] = X["ESPEC"].astype('category')
+X['PROC_SOLIC'] = X["PROC_SOLIC"].astype('category')
+X['MARCA_UTI'] = X["MARCA_UTI"].astype('category')
+y = df['COBRANCA'].astype('category')
+X_train, X_test, y_train, y_test = train_test_split(X, y)
+
+fit_tree = tr.fit(X_train, y_train)
+fit_tree.get_n_leaves()
+
+y_1 = fit_tree_sh.predict(x_test)
+# from sklearn.tree import export_graphviz 
+
+# # export the decision tree to a tree.dot file
+# # for visualizing the plot easily anywhere
+export_graphviz(tr, out_file ='tree2.dot',
+               feature_names =X.keys())
+import graphviz
+graphviz.render(engine = 'dot', filepath='tree2.dot', outfile='tree2.pdf')
+
+# import matplotlib.pyplot as plt
+# plt.figure()
+# plt.scatter(X, y, s=20, edgecolor="black", c="darkorange", label="data")
+# plt.plot(x_test, y_1, color="cornflowerblue", label="max_depth=2", linewidth=2)
+# # plt.plot(x_test, y_2, color="yellowgreen", label="max_depth=5", linewidth=2)
+# plt.xlabel("data")
+# plt.ylabel("target")
+# plt.title("Decision Tree Regression")
+# plt.legend()
+# plt.show()
 
 """ VALORES """
 
