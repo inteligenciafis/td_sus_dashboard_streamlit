@@ -98,5 +98,19 @@ with open("VAL_UTI_<_idade_SEXO.pickle", 'wb') as file2:
     pickle.dump(ln, file2)
 
 
+# QT_DIARIAS
 
+y = df['QT_DIARIAS']
+X = df[["idade", "SEXO", "ESPEC", "PROC_SOLIC", "MARCA_UTI"]]
+X['SEXO'] = X["SEXO"].astype('category')
+X['ESPEC'] = X["ESPEC"].astype('category')
+X['PROC_SOLIC'] = X["PROC_SOLIC"].astype('category')
+X['MARCA_UTI'] = X["MARCA_UTI"].astype('category')
+y = df['COBRANCA'].astype('category')
+X_train, X_test, y_train, y_test = train_test_split(X, y)
 
+fit_diarias = ln.fit(X_train, y_train)
+fit_diarias.score(X_test, y_test)
+
+with open("qt_diarias<_.pickle", 'wb') as file2:
+    pickle.dump(fit_diarias, file2)
