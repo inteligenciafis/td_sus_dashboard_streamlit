@@ -29,7 +29,7 @@ def add_munic(df):
     df = df.merge(mun[['key', 'Nome_Município']], on='key')
     return(df)
 
-mun = pd.read_table('/home/vini/git/td_sus_dashboard_streamlit/br_municip.cnv', encoding='latin1', sep = '\t', header=None)
+mun = pd.read_table('br_municip.cnv', encoding='latin1', sep = '\t', header=None)
 def read_cnv(path):
     pass
 
