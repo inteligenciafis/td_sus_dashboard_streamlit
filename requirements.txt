@@ -1,3 +1,4 @@
+xlrd
 #altair @ file:///tmp/build/80754af9/altair_1599835197802/work
 #argon2-cffi @ file:///opt/conda/conda-bld/argon2-cffi_1645000214183/work
 #argon2-cffi-bindings @ file:///tmp/build/80754af9/argon2-cffi-bindings_1644553347904/work
