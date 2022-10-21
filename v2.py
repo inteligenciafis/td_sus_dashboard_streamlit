@@ -20,6 +20,8 @@ import numpy as np
 import datetime as dt
 import time
 
+from utils import add_munic
+
 # """
 # MODELOS DE REGRESSÃO
 # """
@@ -91,7 +93,8 @@ pacientes['idade'] = idade
 # STREAMLIT
 #
 # """
-tab1, tab2= st.tabs(["Pacientes", "Hospitais"])
+
+tab1, tab2= st.tabs(["Pacientes", "Hospital"])
 
 with tab1:
     # st.header("Pacientes")
@@ -176,3 +179,9 @@ with tab1:
 
 
     p_idade(df.idade, paciente.idade)
+
+
+with tab2:
+    st.bar_chart(pacientes['QT_DIARIAS'])
+    st.dataframe(add_munic(pacientes))
+    
